@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - Idul Fitri</title>
+    <link rel="stylesheet" href="css/terima-kasih.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .gallery-container {
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery-media {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 1s ease;
+        }
+        
+        .gallery-media.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-media {
+                max-width: 300px;
+            }
+        }
+        
+        .next-btn {
+            margin-top: 2rem;
+            opacity: 0;
+            visibility: hidden;  /* Add this line */
+            transition: all 1s ease;
+        }
+
+        .next-btn.visible {
+            opacity: 1;
+            visibility: visible;  /* Add this line */
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="bg-pattern"></div>
+        <div class="bg-overlay"></div>
+        
+        <div class="content-container">
+            <div class="card">
+                <div class="card-inner">
+                    <h1 class="main-title">Kenangan Indah</h1>
+                    
+                    <div class="divider">
+                        <span class="line"></span>
+                        <span class="star">✧</span>
+                        <span class="line"></span>
+                    </div>
+                    
+                    <!-- In the card-inner div, replace the gallery-container content with: -->
+                    <div class="gallery-container">
+                        <div class="media-wrapper">
+                            <!-- Media will be inserted here by JavaScript -->
+                        </div>
+                        <p class="gallery-caption">Momen indah bersama keluarga ✨</p>
+                    </div>
+
+                    <button class="next-btn" style="display: none;">
+                        Lanjut ke THR... 🎁
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        Created with ❤️ by <a href="https://github.com/rizqimulyawan" target="_blank">Muhammad Rizqi Mulyawan</a>
+    </div>
+    
+    <!-- Add this after the copyright div -->
+    <audio id="bgMusic" loop>
+        <source src="assets/music/takbiran.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        const mediaItems = [
+            { 
+                type: 'image',
+                src: 'assets/images/gallery/foto1.jpg', 
+                caption: 'Momen indah bersama keluarga ✨' 
+            },
+            { 
+                type: 'image',
+                src: 'assets/images/gallery/foto2.jpg', 
+                caption: 'Berbagi kebahagiaan di hari yang fitri 🌟' 
+            },
+            {
+                type: 'image',
+                src: 'assets/images/gallery/foto3.jpg',
+                caption: 'Hari batik, mia sama kania libur makanya ga ada foto batik🎉'
+            },
+            {
+                type: 'image',
+                src: 'assets/images/gallery/foto4.jpg',
+                caption: 'Foto sama bilbil 🤗'
+            },
+            {
+                type: 'image',
+                src: 'assets/images/gallery/foto5.jpg',
+                caption: 'Ini foto sama mia dan kania ✨'
+            },
+            {
+                type: 'image',
+                src: 'assets/images/gallery/foto6.jpg',
+                caption: 'Foto sama tayo si pipi gedeeee 😊'
+            },
+            {
+                type: 'image',
+                src: 'assets/images/gallery/foto7.jpg',
+                caption: 'Foto sama zahroo 💝'
+            },
+            {
+                type: 'image',
+                src: 'assets/images/gallery/foto8.jpg',
+                caption: 'Foto sama melmell 🌙'
+            },
+            {
+                type: 'image',
+                src: 'assets/images/gallery/foto9.jpg',
+                caption: 'Pas ultah melmel abis liat kebakaran ⭐'
+            },
+            {
+                type: 'image',
+                src: 'assets/images/gallery/foto10.jpg',
+                caption: 'Pas duduk sebelum libur 🍪'
+            },
+            {
+                type: 'image',
+                src: 'assets/images/gallery/foto11.jpg',
+                caption: 'Bukber kemaren 🌟'
+            }
+        ];
+
+        let currentIndex = 0;
+        const mediaWrapper = document.querySelector('.media-wrapper');
+        const galleryCaption = document.querySelector('.gallery-caption');
+        const nextBtn = document.querySelector('.next-btn');
+        const music = document.getElementById('bgMusic');
+
+        // Add click handler for initial interaction
+        document.addEventListener('click', startGallery, { once: true });
+
+        function startGallery() {
+            music.play().catch(error => {
+                console.log("Audio playback failed:", error);
+            });
+            showMedia(0);
+        }
+
+        // Update the gallery container to show start instruction
+        document.querySelector('.gallery-caption').textContent = 'Klik dimana saja untuk memulai galeri 🎵';
+
+        function showMedia(index) {
+            const item = mediaItems[index];
+            mediaWrapper.innerHTML = '';
+            
+            if (item.type === 'image') {
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.className = 'gallery-media';
+                img.alt = item.caption;
+                mediaWrapper.appendChild(img);
+                
+                setTimeout(() => {
+                    img.classList.add('active');
+                    galleryCaption.classList.add('active');
+                }, 100);
+
+                setTimeout(() => {
+                    if (index < mediaItems.length - 1) {
+                        img.classList.remove('active');
+                        galleryCaption.classList.remove('active');
+                        setTimeout(() => showMedia(index + 1), 500);
+                    } else {
+                        // Show next button only after last photo
+                        nextBtn.style.display = 'block';
+                        setTimeout(() => {
+                            nextBtn.classList.add('visible');
+                        }, 500);
+                    }
+                }, 3000);
+            }
+            
+            galleryCaption.textContent = item.caption;
+        }
+
+        showMedia(0);
+
+        nextBtn.addEventListener('click', function() {
+            const card = document.querySelector('.card');
+            card.style.transform = 'scale(0.95)';
+            card.style.opacity = '0';
+            
+            setTimeout(() => {
+                window.location.href = 'thr.html';
+            }, 500);
+        });
+    </script>
+</body>
+</html>

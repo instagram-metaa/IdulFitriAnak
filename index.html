@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Hari Raya Idul Fitri 1446 H</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        #content {
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a1128;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .loader {
+            text-align: center;
+        }
+
+        .moon-loader {
+            width: 120px;
+            height: 120px;
+            border: 6px solid transparent;
+            border-radius: 50%;
+            border-top: 6px solid #ffd700;
+            border-left: 6px solid #ffd700;
+            margin: 0 auto 2rem;
+            animation: rotate 1.5s linear infinite;
+        }
+
+        .loading-text {
+            color: #ffd700;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loader">
+            <div class="moon-loader"></div>
+            <div class="loading-text">Loading... 0%</div>
+        </div>
+    </div>
+
+    <div id="content"></div>
+    
+    <audio id="bgMusic" loop>
+        <source src="assets/music/takbiran.mp3" type="audio/mp3">
+    </audio>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

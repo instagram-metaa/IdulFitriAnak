@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilihan - Idul Fitri</title>
+    <link rel="stylesheet" href="css/pilihan.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="bg-pattern"></div>
+        <div class="bg-overlay"></div>
+        
+        <div class="content-container">
+            <div class="card">
+                <div class="card-inner">
+                    <h1 class="main-title">Mohon Keikhlasannya anakku</h1>
+                    
+                    <div class="divider">
+                        <span class="line"></span>
+                        <span class="star">✧</span>
+                        <span class="line"></span>
+                    </div>
+                    
+                    <div class="message-section">
+                        <h2 class="question">Ehem... Mohon Perhatiannya 👉👈</h2>
+                        <p class="sub-question">Dengan segenap kerendahan hati dan muka memelas ini, sudikah kiranya memaafkan segala khilaf Bapak? 🥺</p>
+                    </div>
+
+                    <div class="choice-container">
+                        <button class="choice-btn accept">
+                            <span class="btn-text">Iya, Dimaafin</span>
+                            <span class="btn-icon">🤗</span>
+                        </button>
+                        <button class="choice-btn reject" style="position: relative;">
+                            <span class="btn-text">Gak Mau! Huh!</span>
+                            <span class="btn-icon">😤</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="assets/music/takbiran.mp3" type="audio/mp3">
+    </audio>
+
+    
+            <script>
+                const rejectBtn = document.querySelector('.choice-btn.reject');
+                const acceptBtn = document.querySelector('.choice-btn.accept');
+                const card = document.querySelector('.card');
+                let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+                function moveDesktopButton(e) {
+                    const cardBounds = card.getBoundingClientRect();
+                    const buttonWidth = rejectBtn.offsetWidth;
+                    const buttonHeight = rejectBtn.offsetHeight;
+                    
+                    const safeArea = {
+                        minX: cardBounds.left + 20,
+                        maxX: cardBounds.right - buttonWidth - 20,
+                        minY: cardBounds.top + 20,
+                        maxY: cardBounds.bottom - buttonHeight - 20
+                    };
+                    
+                    const randomX = Math.floor(Math.random() * (safeArea.maxX - safeArea.minX)) + safeArea.minX;
+                    const randomY = Math.floor(Math.random() * (safeArea.maxY - safeArea.minY)) + safeArea.minY;
+    
+                    rejectBtn.style.position = 'fixed';
+                    rejectBtn.style.zIndex = '1000';
+                    rejectBtn.style.transition = 'all 0.2s ease';
+                    rejectBtn.style.left = `${randomX}px`;
+                    rejectBtn.style.top = `${randomY}px`;
+                }
+    
+                function handleMobileButton(e) {
+                    e.preventDefault();
+                    const directions = ['translateX(100px)', 'translateX(-100px)', 'translateY(50px)', 'translateY(-50px)'];
+                    const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+                    
+                    rejectBtn.style.transition = 'transform 0.3s ease';
+                    rejectBtn.style.transform = randomDirection;
+                    
+                    setTimeout(() => {
+                        rejectBtn.style.transform = 'translate(0, 0)';
+                    }, 300);
+                }
+    
+                if (!isMobile) {
+                    rejectBtn.addEventListener('mouseover', moveDesktopButton);
+                } else {
+                    rejectBtn.removeAttribute('style');
+                    rejectBtn.addEventListener('touchstart', handleMobileButton, { passive: false });
+                    rejectBtn.addEventListener('click', handleMobileButton);
+                }
+    
+                acceptBtn.addEventListener('click', function() {
+                    card.style.transform = 'scale(0.95)';
+                    card.style.opacity = '0';
+                    setTimeout(() => {
+                        window.location.href = 'terima-kasih.html';
+                    }, 500);
+                });
+            </script>
+
+   
+
+    <!-- Remove these scripts since they're now handled in index.html -->
+
+    <div class="copyright">
+        Created with ❤️ by <a href="https://github.com/rizqimulyawan" target="_blank">Muhammad Rizqi Mulyawan</a>
+    </div>
+</body>
+</html>

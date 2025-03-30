@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terima Kasih - Idul Fitri</title>
+    <link rel="stylesheet" href="css/terima-kasih.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="bg-pattern"></div>
+        <div class="bg-overlay"></div>
+        
+        <div class="content-container">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="thank-you-emoji">🤲</div>
+                    <h1 class="main-title">Jazakumullah Khairan</h1>
+                    
+                    <div class="divider">
+                        <span class="line"></span>
+                        <span class="star">✧</span>
+                        <span class="line"></span>
+                    </div>
+                    
+                    <div class="message-section">
+                        <p class="thank-you-text">Alhamdulillah, terima kasih udah di maapin bapak</p>
+                        <p class="doa">Semoga Allah SWT membalas kebaikan hati kalian dengan keusilan bapak yang berlimpah</p>
+                        <div class="arabic-text">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ</div>
+                        <p class="latin-text">Taqabbalallahu Minna Wa Minkum</p>
+                        <p class="message">Semoga Allah menerima amal ibadah kita</p>
+                        <p class="funny-text">emmm... tadi tombolnya susah dipencet ya? 🤭 Maap deh hehe...</p>
+                        <button class="next-btn">
+                            KLIK DISINI...
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        Created with ❤️ by <a href="https://github.com/rizqimulyawan" target="_blank">Muhammad Rizqi Mulyawan</a>
+    </div>
+    
+    <script>
+        document.querySelector('.next-btn').addEventListener('click', function() {
+            const card = document.querySelector('.card');
+            card.style.transform = 'scale(0.95)';
+            card.style.opacity = '0';
+            
+            setTimeout(() => {
+                window.location.href = 'galeri.html';
+            }, 500);
+        });
+    </script>
+</body>
+</html>

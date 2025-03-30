@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Hari Raya Idul Fitri 1446 H</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <div class="bg-pattern"></div>
+        <div class="bg-overlay"></div>
+        
+        <div class="content-container">
+            <div class="moon-decoration"></div>
+            
+            <div class="card">
+                <div class="card-inner">
+                    <h1 class="main-title">Selamat Hari Raya</h1>
+                    <h2 class="sub-title">Idul Fitri</h2>
+                    <div class="arabic-text">1446 H</div>
+                    
+                    <div class="divider">
+                        <span class="line"></span>
+                        <span class="star">✧</span>
+                        <span class="line"></span>
+                    </div>
+                    
+                    <div class="message-section">
+                        <p class="name">Bapak Iki</p>
+                        <h3 class="greeting">Minal Aidin Wal Faizin</h3>
+                        <p class="message">Mohon Maaf Lahir dan Batin</p>
+                        <p class="quote">Di hari yang fitri ini, dengan kerendahan hati bapak memohon maaf atas segala salah dan khilaf akhh</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="floating-elements">
+                <div class="ketupat"></div>
+                <div class="lantern"></div>
+                <div class="mosque"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        Created with ❤️ by <a href="https://github.com/rizqimulyawan" target="_blank">Muhammad Rizqi Mulyawan</a>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="assets/music/takbiran.mp3" type="audio/mp3">
+    </audio>
+
+    <script src="js/music.js"></script>
+    <script>
+        // Auto redirect after 5 seconds
+        setTimeout(() => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                window.navigateTo('pilihan.html');
+            }, 1000);
+        }, 5000);
+    </script>
+       
+    <!-- Hapus baris ini -->
+    <!-- <script src="js/script.js"></script> -->
+</body>
+</html>
